@@ -1,0 +1,45 @@
+:root {
+    --bg-body: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-secondary: #64748b;
+    --accent-blue: #0ea5e9;
+    --status-online: #22c55e;
+    --status-offline: #ef4444;
+}
+
+body { 
+    background-color: var(--bg-body); 
+    color: var(--text-main); 
+    font-family: 'Inter', sans-serif; 
+}
+
+.card { 
+    background: var(--card-bg); 
+    border: 1px solid #e2e8f0; 
+    border-radius: 10px; 
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); 
+}
+
+.admin-sidebar { 
+    background: #ffffff; 
+    border-right: 1px solid #e2e8f0;
+    min-height: 100vh; 
+    padding: 2rem 1rem; 
+}
+
+.nav-link { 
+    color: var(--text-secondary); 
+    border-radius: 8px; 
+    margin-bottom: 5px; 
+}
+
+.nav-link:hover, .nav-link.active { 
+    background: #f1f5f9; 
+    color: var(--accent-blue); 
+}
+
+.table { color: var(--text-main); }
+.status-dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 8px; }
+.dot-online { background-color: var(--status-online); }
+.dot-offline { background-color: var(--status-offline); }
