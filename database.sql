@@ -1,28 +1,29 @@
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) UNIQUE,
-    password VARCHAR(255)
-);
+    gebruikersnaam VARCHAR(50) NOT NULL UNIQUE,
+    wachtwoord VARCHAR(255) NOT NULL,
+    aangemaakt_op TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE services (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
-    type ENUM('website', 'ip'),
-    target VARCHAR(255),
+    name VARCHAR(100) NOT NULL,
+    type ENUM('website', 'ip') NOT NULL,
+    target VARCHAR(255) NOT NULL,
     status ENUM('online', 'offline') DEFAULT 'online',
     last_check TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE incidents (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255),
+    title VARCHAR(255) NOT NULL,
     description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE maintenance (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255),
+    title VARCHAR(255) NOT NULL,
     description TEXT,
-    scheduled_date DATETIME
-);
+    scheduled_date DATETIME NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
