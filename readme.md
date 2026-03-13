@@ -1,43 +1,40 @@
-# 🚀 Custom Status Panel
+# 📊 Status Monitor System (Light Mode)
 
-A lightweight, self-hosted Status Page and Monitoring System built with PHP, MySQL, and Bootstrap 5. It automatically monitors websites and servers, reports incidents, and provides an easy-to-use admin interface.
+A professional, lightweight status page system built with **PHP**, **MySQL**, and **Bootstrap 5**. Monitor your websites and IP addresses, report incidents, and schedule maintenance through a clean administrative dashboard.
 
-## ✨ Features
+## 🚀 Quick Start (XAMPP)
 
-* **Real-time Monitoring:** Automatically checks if your websites (HTTP/HTTPS) or servers (IP) are online.
-* **Auto-Incident Management:** * Creates an incident automatically when a service goes **offline**.
-    * Automatically resolves (deletes) the incident when the service comes back **online**.
-* **Modern Admin Dashboard:** English-language interface with quick stats for Services, Incidents, and Admins.
-* **Secure Authentication:** Admin accounts are protected with `password_hash` (Bcrypt) encryption.
-* **Responsive Design:** Fully mobile-friendly UI using Bootstrap 5 and Lucide Icons.
+1. **Database Setup**:
+   - Open **phpMyAdmin**.
+   - Create a new database named `calender`.
+   - Run the following SQL to create the necessary tables:
+     ```sql
+     CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(50) UNIQUE, password VARCHAR(255));
+     CREATE TABLE services (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100), type ENUM('website', 'ip'), target VARCHAR(255), status ENUM('online', 'offline') DEFAULT 'online');
+     CREATE TABLE incidents (id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255), description TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+     CREATE TABLE maintenance (id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255), description TEXT, scheduled_date DATETIME);
+     ```
 
-## 🛠️ Installation
+2. **Default Credentials**:
+   - Navigation: `http://localhost/admin/login.php`
+   - **Username**: `admin`
+   - **Password**: `admin123`
+   *Note: Accessing `admin/users.php` will automatically create this user if it doesn't exist.*
 
-1.  **Database Setup:**
-    * Create a database named `status` in phpMyAdmin.
-    * Import your tables (`services`, `incidents`, `users`, `maintenance`).
+3. **Monitoring**:
+   - To update service statuses, run `check_status.php` manually or set up a Cron job/Task Scheduler.
 
-2.  **Configuration:**
-    * Edit `db.php` in the root folder with your database credentials:
-    ```php
-    $host = "localhost";
-    $user = "root";
-    $pass = "";
-    $db   = "status";
-    ```
+## 📂 Folder Structure
 
-3.  **Create Admin:**
-    * Use the `users` section in the admin panel to create your first administrator account.
-
-## 📈 Monitoring Setup
-
-To keep the status updated automatically, the file `admin/check_status.php` needs to be triggered regularly.
-
-### Windows (XAMPP)
-You can use a "Browser Auto Refresh" extension or a Cron-job tool to hit:
-`http://localhost/admin/check_status.php` every 1 or 5 minutes.
-
-### Linux (Server)
-Add a crontab entry:
-```bash
-*/5 * * * * php /var/www/html/admin/check_status.php
+```text
+C:\xampp\htdocs\
+├── index.php             # Public status page
+├── db.php                # Database connection settings
+├── style.css             # Light-mode UI styling
+├── check_status.php      # Automation script (Pings URLs/IPs)
+└── admin\                # Protected directory
+    ├── index.php         # Admin Dashboard
+    ├── services.php      # Manage Websites & IPs
+    ├── incidents.php     # Report system outages
+    ├── maintenance.php   # Plan server work
+    ├──
